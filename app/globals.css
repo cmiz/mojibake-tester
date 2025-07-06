@@ -1,26 +1,133 @@
-@import "tailwindcss";
+/* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* その他のグローバルスタイルがあればここに追加 */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.environments {
+  text-align: center;
+  color: #777;
+  margin: 10px 0 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 110%;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  resize: vertical;
+  /* Tailwind CSS を使う場合は class="w-full p-2 text-lg font-sans box-border resize-y" のように置き換え */
+}
+
+.arrowDown {
+  width: 0;
+  border-top: 15px solid #ccc;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  margin: 20px auto;
+}
+
+/* APIから返されるHTMLが持つクラスに対応するスタイル */
+.result {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  background: #f3f5f7;
+}
+
+.originEncoding {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.originEncoding b {
+  font-size: 120%;
+}
+
+.originByteString {
+  font-family: monospace;
+  font-size: 85%;
+  background: white;
+  border: 1px solid #eee;
+  padding: 5px;
+  color: #666;
+  margin-bottom: 10px;
+  word-break: break-all;
+  min-height: 1em;
+}
+
+.misinterprets {
+  margin-top: 14px;
+}
+
+.wrongEncoding {
+  font-size: 95%;
+  margin-bottom: 8px;
+}
+
+.wrongEncoding b {
+  font-size: 115%;
+}
+
+.garbledText {
+  background: white;
+  border: 1px solid #eee;
+  padding: 5px;
+  margin-left: 1em;
+  word-break: break-all;
+  min-height: 1em;
+}
+
+/* ローディングスピナーのスタイル */
+.loading {
+  position: relative;
+}
+
+.loading:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff9;
+  z-index: 10; /* スピナーより下に配置 */
+}
+
+.loading:after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 20px);
+  top: 80px; /* Adjusted top for better centering with dynamic content */
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: loading-spinner 1s linear infinite;
+  z-index: 20; /* スピナーを最前面に */
+}
+
+@keyframes loading-spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
